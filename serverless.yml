@@ -33,7 +33,7 @@ functions:
           path: envVariables
           method: GET
     environment:
-      OTHER_API_KEY:
+      OTHER_API_KEY: key569
 resources:
   Resources:
     uploadBucket:
