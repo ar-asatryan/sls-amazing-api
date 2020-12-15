@@ -1,7 +1,7 @@
 import app from "../src/app";
+import sls from "serverless-http";
 
 import { APIGatewayEvent, Context } from "aws-lambda";
-import sls from "serverless-http";
 
 import { parentLogger } from "../helpers/logger";
 import { IExtendedKoaRequest } from "../helpers/ext-koa-req";

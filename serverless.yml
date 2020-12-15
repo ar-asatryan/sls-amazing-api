@@ -1,31 +1,40 @@
 service: sls-amazing-api
+plugins:
+  - serverless-offline
+  - serverless-webpack
 
-frameworkVersion: '>=1.1.0 <= 2.2.0'
+frameworkVersion: ">=1.1.0 <= 2.2.0"
 
 provider:
   name: aws
   runtime: nodejs12.x
 
-# you can overwrite defaults here
+  # you can overwrite defaults here
   stage: dev
   region: eu-west-2
 
   environment:
+    STAGE: dev
     GOOGLE_MAPS_API_KEY: key9595
 
 functions:
-  endpointGet:
-    handler: handler.endpointGet
+  koa:
+    handler: sls/koa-handler.ts
     events:
       - http:
-          path: get-endpoint
+          path: first
           method: GET
-  endpointPost:
-    handler: handler.endpointPost
-    events:
       - http:
-          path: post-endpoint
+          path: second
           method: POST
+
+  #  endpointPost:
+  #    handler: src/server.ts
+  #    events:
+  #      - http:
+  #          path: post-endpoint
+  #          method: POST
+
   envVariables:
     handler: envVariables.handler
     events:
@@ -34,6 +43,7 @@ functions:
           method: GET
     environment:
       OTHER_API_KEY: key569
+
 resources:
   Resources:
     uploadBucket:
